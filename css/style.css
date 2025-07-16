@@ -1,34 +1,96 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif;
     height: 100%;
 }
 
 .hero {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-    background-size: cover;
+    background: linear-gradient(-45deg, #0a2c3e, #0e2f3b, #071920, #0a2c3e);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    color: #f9fafb;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.floating-squares {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.square {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.05);
+    animation: floatSquare 5s infinite ease-in-out;
+    border-radius: 5px;
+}
+
+.square1 { top: 20%; left: 5%; animation-delay: 0s; }
+.square2 { top: 60%; left: 90%; animation-delay: 2s; }
+.square3 { top: 30%; left: 70%; animation-delay: 4s; }
+.square4 { top: 80%; left: 10%; animation-delay: 6s; }
+.square5 { top: 50%; left: 25%; animation-delay: 8s; }
+.square6 { top: 10%; left: 65%; animation-delay: 8s; }
+.square7 { top: 90%; left: 80%; animation-delay: 8s; }
+.square8 { top: 40%; left: 45%; animation-delay: 8s; }
+
+@keyframes floatSquare {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.15;
+    }
+    50% {
+        transform: translateY(-40px) scale(1.1);
+        opacity: 0.35;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.15;
+    }
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    z-index: 1;
 }
 
 .container {
     max-width: 800px;
     text-align: center;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 header h1 {
-    color: #f43f5e;
+    color: #d2db1a;
     font-size: 2.5em;
     margin-bottom: 20px;
 }
@@ -39,12 +101,12 @@ header h1 {
 }
 
 main h2 {
-    color: #3b82f6;
+    color: #d2db1a;
     margin-top: 30px;
 }
 
 p, li {
-    color: #e5e7eb;
+    color: #f3f3f3;
     font-size: 1.1em;
     line-height: 1.6em;
 }
@@ -56,25 +118,43 @@ ul {
 }
 
 ul li {
-    background: #1e40af;
-    padding: 10px 15px;
-    border-radius: 5px;
+    background: #1a2732;
+    padding: 12px 18px;
+    border-radius: 8px;
     margin: 10px 0;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    text-align: left;
+    position: relative;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.3s ease;
+}
+
+ul li i {
+    color: #d2db1a;
+    font-size: 1.2em;
+    min-width: 20px;
+}
+
+ul li:hover {
+    transform: scale(1.03);
+    background-color: #264a5c;
 }
 
 .alert-box {
-    background-color: #facc15;
-    color: #1f2937;
+    background-color: #d2db1a;
+    color: #0a2c3e;
     font-weight: bold;
     padding: 15px;
     border-radius: 8px;
     margin-top: 25px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 footer {
     margin-top: 30px;
     font-size: 0.9em;
-    color: #9ca3af;
+    color: #cccccc;
+    opacity: 0.8;
+    animation: fadeIn 1s ease 0.5s forwards;
 }
